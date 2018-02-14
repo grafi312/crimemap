@@ -25,7 +25,7 @@ PRIMARY KEY (id)
 """
         cursor.execute(sql)
 
-    cursor.commit()
+    connection.commit()
 
 finally:
     connection.close()
