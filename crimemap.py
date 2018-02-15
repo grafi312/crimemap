@@ -11,8 +11,8 @@ def home():
     try:
         data = DB.get_all()
     except Exception as e:
-        print e
-    
+        print(e)
+
     return render_template("home.html", data=data)
 
 @app.route("/add", methods=["POST"])
@@ -22,8 +22,8 @@ def add():
 
         DB.add(data)
     except Exception as e:
-        print e
-    
+        print(e)
+
     return home()
 
 @app.route("/clear")
@@ -31,8 +31,8 @@ def clear():
     try:
         DB.clear_all()
     except Exception as e:
-        print e
-    
+        print(e)
+
     return home()
 
 

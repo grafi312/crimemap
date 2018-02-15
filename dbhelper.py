@@ -13,7 +13,7 @@ class DBHelper:
         connection = self.connect()
 
         try:
-            query = "SELECT description FROM {};".format(dbconfig.db_database)
+            query = "SELECT description FROM `{}`.`crimes`;".format(dbconfig.db_database)
 
             with connection.cursor() as cursor:
                 cursor.execute(query)
@@ -26,11 +26,12 @@ class DBHelper:
         connection = self.connect()
 
         try:
-            query = "INSERT INTO {}(description) VALUES ('{}');".format(dbconfig.db_database, data)
+            query = "INSERT INTO `{}`.`crimes`(description) VALUES ('{}');".format(dbconfig.db_database, data)
 
-            with connection.cursor as cursor:
+            with connection.cursor() as cursor:
                 cursor.execute(query)
                 connection.commit()
+
         finally:
             connection.close()
 
@@ -38,10 +39,10 @@ class DBHelper:
         connection = self.connect()
 
         try:
-            query = "DELETE FROM {}".format(dbconfig.db_database)
+            query = "DELETE FROM `{}`.`crimes`".format(dbconfig.db_database)
 
-            with connection.cursor as cursor:
+            with connection.cursor() as cursor:
                 cursor.execute(query)
-                cursor.commit()
+                connection.commit()
         finally:
             connection.close()
